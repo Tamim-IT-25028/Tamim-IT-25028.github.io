@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mushfukur Rhaman Tamim | ICT Department, MBSTU</title>
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --banner-bg: #771919;
+            --nav-bg: #4a0e0e;
+            --nav-active: #661414;
+            --link-red: #8b0000;
+            --text-dark: #222222;
+            --text-muted: #555555;
+            --bg-gray: #f9f9f9;
+            --border-color: #e5e5e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* --- TOP BRAND BANNER --- */
+        .top-banner {
+            background-color: var(--banner-bg);
+            color: #ffffff;
+            padding: 14px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-banner .dept-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .top-banner .mbstu-logo i {
+            font-size: 1.8rem;
+        }
+
+        /* --- STICKY NAVIGATION BAR --- */
+        .nav-bar {
+            background-color: var(--nav-bg);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav-link {
+            color: #e0e0e0;
+            text-decoration: none;
+            padding: 12px 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--nav-active);
+            color: #ffffff;
+            border-bottom: 3px solid #ff4d4d;
+        }
+
+        /* --- MAIN LAYOUT --- */
+        .container {
+            max-width: 1150px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+        }
+
+        /* --- LEFT SIDEBAR (Sticky on scroll) --- */
+        .sidebar-wrapper {
+            position: sticky;
+            top: 60px; /* Offset under sticky nav */
+            height: fit-content;
+        }
+
+        .sidebar {
+            border-right: 1px solid var(--border-color);
+            padding-right: 25px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            max-width: 230px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .sidebar h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .sidebar .designation {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .sidebar .dept-info {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-links {
+            list-style: none;
+            font-size: 0.88rem;
+        }
+
+        .sidebar-links li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            word-break: break-all;
+        }
+
+        .sidebar-links i {
+            color: var(--link-red);
+            width: 16px;
+        }
+
+        .sidebar-links a {
+            color: var(--link-red);
+            text-decoration: none;
+        }
+
+        .sidebar-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- RIGHT CONTENT PANELS (Scrollable Single Page) --- */
+        .content-panel {
+            display: block; 
+            margin-bottom: 50px;
+            scroll-margin-top: 70px; /* Offset so sticky header doesn't cover section title */
+        }
+
+        .section-header {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--link-red);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        /* Academic List Items */
+        .academic-list {
+            list-style: none;
+        }
+
+        .academic-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 22px;
+        }
+
+        .academic-item::before {
+            content: "●";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--link-red);
+            font-size: 0.8rem;
+        }
+
+        .item-title {
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: var(--link-red);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 3px;
+        }
+
+        .item-title:hover {
+            text-decoration: underline;
+        }
+
+        .item-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .item-details {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Skills Badges */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .skill-chip {
+            background-color: var(--bg-gray);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-family: 'Roboto Mono', monospace;
+            color: var(--text-dark);
+        }
+
+        /* Course Cards Grid */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 15px;
+        }
+
+        .course-card {
+            background-color: var(--bg-gray);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 4px solid var(--link-red);
+        }
+
+        .course-code {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--link-red);
+        }
+
+        .course-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            border-top: 1px solid var(--border-color);
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background-color: var(--bg-gray);
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 820px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar-wrapper {
+                position: relative;
+                top: 0;
+            }
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding-right: 0;
+                padding-bottom: 25px;
+            }
+            .profile-photo {
+                max-width: 180px;
+            }
+            .top-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+            .nav-container {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Department Banner -->
+    <header class="top-banner">
+        <div class="dept-name">DEPARTMENT OF INFORMATION AND COMMUNICATION TECHNOLOGY</div>
+        <div class="mbstu-logo">
+            <i class="fas fa-university"></i>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation Bar (ScrollSpy active) -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="#overview" class="nav-link active">Overview</a>
+            <a href="#education" class="nav-link">Education & Standing</a>
+            <a href="#skills" class="nav-link">Technical Skills</a>
+            <a href="#coursework" class="nav-link">Coursework & Labs</a>
+            <a href="#projects" class="nav-link">Projects & CP</a>
+            <a href="#activities" class="nav-link">Activities & Clubs</a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Left Sidebar (Sticky) -->
+        <aside class="sidebar-wrapper">
+            <div class="sidebar">
+                <!-- Ensure your image file is named profile.jpg -->
+                <img src="profile.jpg" alt="Mushfukur Rhaman Tamim" class="profile-photo">
+                <h1>Mushfukur Rhaman Tamim</h1>
+                <div class="designation">Undergraduate ICT Student</div>
+                
+                <div class="dept-info">
+                    Department of Information and Communication Technology<br>
+                    <strong>Mawlana Bhashani Science and Technology University (MBSTU)</strong><br>
+                    Santosh, Tangail-1902, Bangladesh
+                </div>
+
+                <ul class="sidebar-links">
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:m.r.tamim1002@gmail.com">m.r.tamim1002@gmail.com</a>
+                    </li>
+                    <li>
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/Tamim-IT-25028/" target="_blank">GitHub Profile</a>
+                    </li>
+                    <li>
+                        <i class="fab fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/mushfikur-rahman-tamim-50616324b/" target="_blank">LinkedIn Profile</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-code"></i>
+                        <a href="https://codeforces.com/profile/tamim74" target="_blank">Codeforces: tamim74</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Right Content Area (Continuous Page) -->
+        <main class="main-content">
+
+            <!-- Overview Section -->
+            <section id="overview" class="content-panel">
+                <h2 class="section-header">Overview</h2>
+                <p style="margin-bottom: 15px;">
+                    Welcome to my academic homepage. I am <strong>Mushfukur Rhaman Tamim</strong>, an undergraduate student in the Department of Information and Communication Technology (ICT) at Mawlana Bhashani Science and Technology University (MBSTU).
+                </p>
+                <p style="margin-bottom: 15px;">
+                    My academic interests focus on low-level system programming, algorithm optimization, and object-oriented software engineering. I am dedicated to honing problem-solving capabilities using C and C++.
+                </p>
+                
+                <h3 style="font-size: 1.1rem; color: var(--link-red); margin: 25px 0 10px 0;">Primary Academic Focus</h3>
+                <ul class="academic-list">
+                    <li class="academic-item">
+                        <div class="item-title">System & Structured Programming</div>
+                        <div class="item-subtitle">Pointers, memory management, and dynamic data structures in C.</div>
+                    </li>
+                    <li class="academic-item">
+                        <div class="item-title">Object-Oriented Software Design</div>
+                        <div class="item-subtitle">OOP paradigms, abstraction, and Standard Template Library (STL) utilization in C++.</div>
+                    </li>
+                    <li class="academic-item">
+                        <div class="item-title">Competitive Problem Solving</div>
+                        <div class="item-subtitle">Algorithmic efficiency, time complexity optimization, and data structure implementations.</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="content-panel">
+                <h2 class="section-header">Education & Academic Standing</h2>
+                <ul class="academic-list">
+                    <li class="academic-item">
+                        <div class="item-title">B.Sc. (Engineering) in Information & Communication Technology</div>
+                        <div class="item-subtitle">Mawlana Bhashani Science and Technology University (MBSTU)</div>
+                        <div class="item-details">
+                            Current Standing: Year 2, Semester 1 (2.1) | Session: 2024-25
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Technical Skills Section -->
+            <section id="skills" class="content-panel">
+                <h2 class="section-header">Technical Skills & Tools</h2>
+                
+                <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 10px;">Programming Languages</h3>
+                <div class="skills-grid">
+                    <span class="skill-chip">C</span>
+                    <span class="skill-chip">C++</span>
+                    <span class="skill-chip">C++ STL</span>
+                    <span class="skill-chip">Object-Oriented Programming (OOP)</span>
+                </div>
+
+                <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 10px;">Core Competencies</h3>
+                <div class="skills-grid">
+                    <span class="skill-chip">Data Structures</span>
+                    <span class="skill-chip">Algorithms</span>
+                    <span class="skill-chip">Time & Space Complexity Analysis</span>
+                    <span class="skill-chip">Problem Solving</span>
+                </div>
+
+                <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 10px;">Development Tools</h3>
+                <div class="skills-grid">
+                    <span class="skill-chip">VS Code</span>
+                    <span class="skill-chip">Code::Blocks</span>
+                    <span class="skill-chip">Git</span>
+                    <span class="skill-chip">GitHub</span>
+                    <span class="skill-chip">GCC / G++ Compilers</span>
+                </div>
+            </section>
+
+            <!-- Coursework Section -->
+            <section id="coursework" class="content-panel">
+                <h2 class="section-header">Coursework & Lab Modules</h2>
+                <div class="course-grid">
+                    <div class="course-card">
+                        <div class="course-code">ICT-1203</div>
+                        <div class="course-title">Structured Programming with C</div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-code">ICT-2103</div>
+                        <div class="course-title">Object Oriented Programming (C++)</div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-code">ICT-1107</div>
+                        <div class="course-title">Discrete Mathematics</div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-code">ICT Core</div>
+                        <div class="course-title">Data Structures & Algorithms</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects & CP Section -->
+            <section id="projects" class="content-panel">
+                <h2 class="section-header">Projects & Competitive Programming</h2>
+                <ul class="academic-list">
+                    <li class="academic-item">
+                        <a href="https://codeforces.com/profile/tamim74" target="_blank" class="item-title">Competitive Programming Profile (Codeforces)</a>
+                        <div class="item-subtitle">Handle: <strong>tamim74</strong></div>
+                        <div class="item-details">Practicing online contests, solving math and data structure problems in C++.</div>
+                    </li>
+                    <li class="academic-item">
+                        <a href="https://github.com/Tamim-IT-25028/" target="_blank" class="item-title">Console Applications & Academic Lab Projects</a>
+                        <div class="item-subtitle">Language: C / C++</div>
+                        <div class="item-details">Implementation of low-level algorithms, data structures, and university coursework projects.</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Activities Section -->
+            <section id="activities" class="content-panel">
+                <h2 class="section-header">Co-Curricular & Club Activities</h2>
+                <ul class="academic-list">
+                    <li class="academic-item">
+                        <div class="item-title">MBSTU ICT Club</div>
+                        <div class="item-subtitle">Member</div>
+                        <div class="item-details">Participating in departmental seminars, technology workshops, and student activities.</div>
+                    </li>
+                    <li class="academic-item">
+                        <div class="item-title">ACM Programming Club, MBSTU</div>
+                        <div class="item-subtitle">Participant</div>
+                        <div class="item-details">Engaging in programming contests and problem-solving practice sessions.</div>
+                    </li>
+                </ul>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 Mushfukur Rhaman Tamim | Department of ICT, MBSTU | Hosted on GitHub Pages
+    </footer>
+
+    <!-- ScrollSpy JavaScript -->
+    <script>
+        const sections = document.querySelectorAll('.content-panel');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 120)) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
